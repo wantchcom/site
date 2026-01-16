@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wantch.com — AI Platform for Helping Professions</title>
+  <meta name="description" content="wantch.com — an AI platform for helping professionals: scheduling, learning, supervision, and client journeys in one place." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1a33;
+      --panel2:#0c1730;
+      --text:#e8eefc;
+      --muted:#b7c3e6;
+      --muted2:#92a2d6;
+      --accent:#38bdf8;
+      --border:rgba(255,255,255,0.08);
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family: var(--font);
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(56,189,248,0.18), transparent 60%),
+                  radial-gradient(1000px 600px at 90% 20%, rgba(99,102,241,0.14), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    a{ color: var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 20px 64px; }
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 0 22px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:0.2px;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(56,189,248,0.12);
+    }
+    .nav a{ color: var(--muted); margin-left: 16px; font-size: 14px; }
+    .nav a:hover{ color: var(--text); text-decoration:none; }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 8px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left{ padding: 30px 28px; }
+    .kicker{
+      color: var(--muted2);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 10px;
+    }
+    h1{
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 1.08;
+      margin-bottom: 12px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 62ch;
+      margin-bottom: 18px;
+    }
+    .cta-row{
+      display:flex; flex-wrap:wrap; gap: 12px;
+      margin-top: 10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(56,189,248,0.35);
+      background: rgba(56,189,248,0.14);
+      color: var(--text);
+      font-weight: 650;
+      text-decoration:none;
+    }
+    .btn:hover{ background: rgba(56,189,248,0.20); text-decoration:none; }
+    .small{
+      font-size: 14px;
+      color: var(--muted2);
+    }
+
+    .hero-right{
+      padding: 24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    .mini-title{ font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .pill{
+      display:inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 8px 10px;
+      border-radius: 999px;
+      margin: 4px 6px 0 0;
+      white-space: nowrap;
+    }
+
+    section{ margin-top: 18px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .box{ padding: 18px 18px; }
+    .box h3{ font-size: 16px; margin-bottom: 8px; color: var(--text); }
+    .box p{ color: var(--muted); font-size: 14px; }
+    .box ul{ margin-left: 18px; margin-top: 10px; color: var(--muted); font-size: 14px; }
+    .box li{ margin: 8px 0; }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .how{
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(56,189,248,0.10), rgba(255,255,255,0.03));
+    }
+    .steps{
+      margin-top: 10px;
+      display:grid;
+      gap: 10px;
+    }
+    .step{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 14px;
+      background: rgba(0,0,0,0.10);
+    }
+    .step b{ color: var(--accent); }
+    .step p{ color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+    .footer{
+      margin-top: 18px;
+      padding: 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .fine{ color: var(--muted2); font-size: 12px; max-width: 70ch; }
+
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .split{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div class="brand">
+        <span class="dot"></span>
+        <span>wantch.com</span>
+      </div>
+      <nav class="nav">
+        <a href="#who">Who it’s for</a>
+        <a href="#what">What it does</a>
+        <a href="#how">How it works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="card hero-left">
+          <div class="kicker">Helping professions • AI-first • privacy-aware</div>
+          <h1>One platform for practice, supervision, learning, and client journeys.</h1>
+          <p class="sub">
+            wantch.com is an AI-powered platform built for helping professionals and the ecosystems around them —
+            coaches, therapists, mentors, supervisors, trainers, and learners.
+          </p>
+
+          <div class="cta-row" id="contact">
+            <a class="btn" href="mailto:contact@wantch.com">Contact: contact@wantch.com</a>
+            <span class="small">Want to join, partner, or learn more? Email us.</span>
+          </div>
+        </div>
+
+        <div class="card hero-right">
+          <div>
+            <div class="mini-title">Designed for multiple roles</div>
+            <div>
+              <span class="pill">Coach</span>
+              <span class="pill">Therapist</span>
+              <span class="pill">Mentor</span>
+              <span class="pill">Supervisor</span>
+              <span class="pill">Trainer</span>
+              <span class="pill">Learner</span>
+              <span class="pill">Client</span>
+            </div>
+          </div>
+          <div>
+            <div class="mini-title">The core promise</div>
+            <p class="small">
+              Reduce admin load, improve consistency, and make professional growth and trusted matching easier —
+              without turning helping work into spreadsheets.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <section id="who" class="split">
+        <div class="card box">
+          <h3>For professionals</h3>
+          <p>Tools that support real practice — sessions, peer work, supervision, and ongoing development.</p>
+          <ul>
+            <li>Structured scheduling for 1:1 and groups</li>
+            <li>Practice & supervision workflows</li>
+            <li>Learning paths and progress record</li>
+          </ul>
+        </div>
+        <div class="card box">
+          <h3>For schools & communities</h3>
+          <p>Infrastructure for cohorts, practice groups, mentors/supervisors, and learning operations.</p>
+          <ul>
+            <li>Group orchestration and coordination</li>
+            <li>Role-based access & confidentiality controls</li>
+            <li>Operational visibility without micromanagement</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="what" class="grid">
+        <div class="card box">
+          <h3>Scheduling that handles complexity</h3>
+          <p>Group formats, rotating roles, time zones, and real-world constraints — made manageable.</p>
+        </div>
+        <div class="card box">
+          <h3>AI support, not replacement</h3>
+          <p>Voice and knowledge-base features designed to reduce friction while keeping the human relationship central.</p>
+        </div>
+        <div class="card box">
+          <h3>Progress & professional identity</h3>
+          <p>A single place to track learning, supervision, and professional development over time.</p>
+        </div>
+      </section>
+
+      <section id="how" class="card how">
+        <h2 style="font-size: 22px; margin-bottom: 10px;">How it works</h2>
+        <p style="color: var(--muted); max-width: 85ch;">
+          Start with professionals and schools. Build critical mass. Then expand to client discovery and trusted matching.
+          AI makes multi-language support and scalable workflows practical from day one.
+        </p>
+        <div class="steps">
+          <div class="step">
+            <b>1) Organize</b>
+            <p>Set roles, cohorts/groups, formats, and confidentiality requirements.</p>
+          </div>
+          <div class="step">
+            <b>2) Coordinate</b>
+            <p>Automate scheduling and session logistics for 1:1 and group scenarios.</p>
+          </div>
+          <div class="step">
+            <b>3) Improve</b>
+            <p>Track progress and learning over time, with AI-assisted summaries and knowledge support.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card footer">
+        <div>
+          <div style="font-weight: 750; margin-bottom: 6px;">Get involved</div>
+          <div class="small">Partnerships • early adopters • advisors • builders</div>
+        </div>
+        <div>
+          <a class="btn" href="mailto:contact@wantch.com">Email contact@wantch.com</a>
+        </div>
+        <div class="fine">
+          wantch.com is being built with privacy and professional ethics in mind. If you’re a practitioner, school, or community leader —
+          we’d love to hear about your workflows and pain points.
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
