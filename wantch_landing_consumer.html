@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wantch — Movie Picks That Match Your Mood</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/wantchcom/site/main/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 700px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+            line-height: 1.6;
+        }
+
+        .cta-primary {
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .early-access-note {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            animation: fadeInUp 1s ease 0.5s backwards;
+        }
+
+        /* iPhone Mockup */
+        .phone-mockup {
+            position: relative;
+            width: 350px;
+            height: 700px;
+            background: #1a1a1a;
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            margin: 50px auto;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 42px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .poster-demo {
+            width: 240px;
+            height: 360px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            animation: posterFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes posterFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            text-align: center;
+        }
+
+        .problem h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #667eea;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .problem-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #f5576c;
+        }
+
+        .problem-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #667eea;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 25px;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .step p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Privacy Section */
+        .privacy {
+            padding: 100px 20px;
+            background: rgba(102, 126, 234, 0.1);
+            text-align: center;
+        }
+
+        .privacy h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+
+        .privacy p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .privacy-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .privacy-feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .privacy-feature .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .privacy-feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 50px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-link {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .phone-mockup { transform: scale(0.85); }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Stop Scrolling.<br>Start Watching.</h1>
+        <p class="subtitle">Get the perfect movie or show for your mood, instantly. No endless browsing. No decision fatigue. Just one tap.</p>
+        <a href="#waitlist" class="cta-primary">Join the Waitlist</a>
+        <p class="early-access-note">Early access launching March 2026</p>
+
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <div class="poster-demo">
+                    Your Perfect<br>Pick ✨
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <h2>Sound Familiar?</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="icon">😫</div>
+                <h3>Decision Paralysis</h3>
+                <p>You spend 20 minutes scrolling Netflix, then give up and watch The Office... again.</p>
+            </div>
+
+            <div class="problem-card">
+                <div class="icon">🤖</div>
+                <h3>Tone-Deaf Algorithms</h3>
+                <p>Recommendations ignore whether you're exhausted, excited, or with friends.</p>
+            </div>
+
+            <div class="problem-card">
+                <div class="icon">🔍</div>
+                <h3>Privacy Invasion</h3>
+                <p>Every click, pause, and rewind is tracked and sold to the highest bidder.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2>How Wantch Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Open the App</h3>
+                <p>One button. That's it. No menus, no filters, no overwhelming choices.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>We Read the Room</h3>
+                <p>Your phone activity, time of day, weather—all analyzed privately on your device.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Get Your Pick</h3>
+                <p>One perfect movie or show. Matched to your vibe, available on your streaming services.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Watch or Skip</h3>
+                <p>Love it? Tap to watch. Not feeling it? Get another pick instantly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="privacy">
+        <h2>Your Data Stays Yours</h2>
+        <p>We built Wantch privacy-first from day one. Your viewing habits, app usage, and personal context never leave your device. We match you with content using anonymous, encrypted signals—no tracking, no selling your data, no creepy ads.</p>
+
+        <div class="privacy-features">
+            <div class="privacy-feature">
+                <div class="icon">🔒</div>
+                <h3>On-Device AI</h3>
+                <p>All analysis happens locally on your phone</p>
+            </div>
+
+            <div class="privacy-feature">
+                <div class="icon">🚫</div>
+                <h3>No Tracking</h3>
+                <p>We don't know what apps you use or what you watch</p>
+            </div>
+
+            <div class="privacy-feature">
+                <div class="icon">🔐</div>
+                <h3>Anonymous Matching</h3>
+                <p>Recommendations use encrypted vectors, not personal data</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="waitlist" class="cta-section">
+        <h2>Ready to Stop Scrolling?</h2>
+        <p>Join the waitlist for early access. iOS launch March 2026.</p>
+        <a href="mailto:contact@wantch.com?subject=Waitlist%20Signup" class="cta-primary">Get Early Access</a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Wantch. Privacy-first movie recommendations.</p>
+        <div class="footer-links">
+            <a href="mailto:contact@wantch.com" class="footer-link">Contact</a>
+            <a href="wantch_landing_investor.html" class="footer-link">Investors</a>
+        </div>
+    </footer>
+</body>
+</html>

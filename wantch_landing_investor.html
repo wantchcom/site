@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wantch — Investor Overview</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/wantchcom/site/main/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 25px;
+            border: 1px solid #667eea;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 40px 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero .elevator-pitch {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-alt {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #667eea;
+            text-align: center;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        /* Market Opportunity */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .market-card {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 35px;
+            border-radius: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .market-card h3 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .market-card .label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .market-card p {
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* Traction */
+        .traction-list {
+            list-style: none;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .traction-list li {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #667eea;
+        }
+
+        .traction-list li::before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .team-member .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        /* Business Model */
+        .revenue-streams {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .revenue-item {
+            background: rgba(102, 126, 234, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .revenue-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* The Ask */
+        .ask-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .ask-box h3 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .ask-box .amount {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .ask-box p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .use-of-funds {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .fund-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .fund-percentage {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 40px;
+            text-align: center;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .header-nav { padding: 15px 20px; }
+            .section { padding: 60px 20px; }
+            .stats-row { gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-nav">
+        <div class="logo">Wantch</div>
+        <a href="wantch_landing_consumer.html" class="nav-link">See Product Page →</a>
+    </header>
+
+    <section class="hero">
+        <h1>Wantch</h1>
+        <p class="tagline">Privacy-First Context Movie Recommendations</p>
+        <p class="elevator-pitch">
+            We're building the first privacy-preserving recommendation engine that matches movies and shows to your real-life context—not just viewing history. One tap, zero scrolling, complete privacy.
+        </p>
+
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-number">$87B</div>
+                <div class="stat-label">Global Streaming Market</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">18min</div>
+                <div class="stat-label">Avg. Decision Time on Netflix</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Q1 2026</div>
+                <div class="stat-label">iOS Beta Launch</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>The Problem</h2>
+        <p>Consumers spend an average of 18+ minutes per session browsing streaming platforms before choosing content, leading to decision paralysis and subscription fatigue. Existing recommendation algorithms ignore life context—whether you're tired, socializing, or procrastinating—and require invasive data collection that compromises user privacy.</p>
+        <p>The cold start problem persists: new users receive generic suggestions until enough viewing data accumulates. Meanwhile, privacy-conscious users have no alternative that delivers personalized recommendations without surveillance.</p>
+    </section>
+
+    <section class="section section-alt">
+        <h2>The Solution</h2>
+        <p>Wantch delivers one-tap movie and series recommendations using <strong>on-device AI analysis</strong> and <strong>vector-based content matching</strong>. We analyze smartphone activity patterns (app usage types, time of day, weather, location context) locally on the user's device, converting them into anonymous state embeddings.</p>
+        <p>These embeddings are matched against our catalog of 50K+ titles tagged with "whisky-aroma" metadata—vibe, pace, tension, visual style, emotional depth—using vector database similarity search. The result: instant, contextually relevant picks without ever accessing viewing history or personal identifiers.</p>
+    </section>
+
+    <section class="section">
+        <h2>Market Opportunity</h2>
+        <div class="market-grid">
+            <div class="market-card">
+                <h3>$87B</h3>
+                <p class="label">TAM (Total Addressable Market)</p>
+                <p>Global streaming market (2026). All users seeking content discovery solutions across platforms.</p>
+            </div>
+
+            <div class="market-card">
+                <h3>$12B</h3>
+                <p class="label">SAM (Serviceable Addressable Market)</p>
+                <p>US + EU privacy-conscious millennials and Gen-Z with 3+ streaming subscriptions (~180M users).</p>
+            </div>
+
+            <div class="market-card">
+                <h3>$420M</h3>
+                <p class="label">SOM (Serviceable Obtainable Market)</p>
+                <p>5% market capture by year 3: 2.5M users × $14 ARPU × 12 months.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <h2>Business Model</h2>
+        <p style="text-align: center; margin-bottom: 40px;">Three revenue streams with 7:1 LTV:CAC ratio and $14 average revenue per user (ARPU).</p>
+
+        <div class="revenue-streams">
+            <div class="revenue-item">
+                <h4>Freemium Subscription</h4>
+                <p>$4.99/month for unlimited picks. Free tier: 10 picks/month. Target 15% conversion within 30 days.</p>
+            </div>
+
+            <div class="revenue-item">
+                <h4>Affiliate Commissions</h4>
+                <p>5-15% commissions from Netflix, Prime, Apple TV+, and other streaming platforms for referrals.</p>
+            </div>
+
+            <div class="revenue-item">
+                <h4>Sponsored Recommendations</h4>
+                <p>$0.50-2.00 CPM from studios for new release placements (privacy-compliant, clearly labeled).</p>
+            </div>
+        </div>
+
+        <p style="margin-top: 30px; text-align: center;"><strong>Unit Economics:</strong> CAC $12 (paid + organic), LTV $85 (18-month retention), LTV:CAC = 7:1</p>
+    </section>
+
+    <section class="section">
+        <h2>Current Traction</h2>
+        <ul class="traction-list">
+            <li>MVP in active development with iOS beta launching Q1 2026</li>
+            <li>5,000+ titles cataloged with proprietary "whisky-aroma" metadata</li>
+            <li>Pilot partnerships signed with 2 indie streaming platforms</li>
+            <li>On-device embedding model achieving 87% context-match accuracy in testing</li>
+            <li>Waitlist growing organically (contact for current numbers)</li>
+        </ul>
+    </section>
+
+    <section class="section section-alt">
+        <h2>Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="icon">👤</div>
+                <h3>Founder / CEO</h3>
+                <p>Background in AI/ML and product design. Based in Montenegro, targeting US market expansion.</p>
+                <p style="font-size: 0.85rem; margin-top: 10px; opacity: 0.6;">[Contact for detailed bio and credentials]</p>
+            </div>
+
+            <div class="team-member">
+                <div class="icon">💼</div>
+                <h3>Advisors (In Discussion)</h3>
+                <p>Ex-Netflix ML engineer, privacy policy expert, entertainment industry veteran.</p>
+            </div>
+
+            <div class="team-member">
+                <div class="icon">📈</div>
+                <h3>Hiring Pipeline</h3>
+                <p>iOS engineer (Q1), Backend ML engineer (Q2), Growth marketer (Q3).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>The Ask</h2>
+        <div class="ask-box">
+            <h3>Seed Round</h3>
+            <div class="amount">$750K</div>
+            <p>18-month runway to Product-Market Fit (PMF)</p>
+
+            <div class="use-of-funds">
+                <div class="fund-item">
+                    <div class="fund-percentage">40%</div>
+                    <div>Engineering (team + infrastructure)</div>
+                </div>
+                <div class="fund-item">
+                    <div class="fund-percentage">30%</div>
+                    <div>Content acquisition & tagging</div>
+                </div>
+                <div class="fund-item">
+                    <div class="fund-percentage">20%</div>
+                    <div>Marketing & user acquisition</div>
+                </div>
+                <div class="fund-item">
+                    <div class="fund-percentage">10%</div>
+                    <div>Operations & legal</div>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-top: 40px; text-align: center; font-size: 1.1rem;">
+            <strong>18-Month Targets:</strong> 100K MAU, 15% free-to-paid conversion, $1.2M ARR, Series A readiness
+        </p>
+    </section>
+
+    <section class="cta-section">
+        <h2>Let's Talk</h2>
+        <p>Interested in learning more? We'd love to share our full pitch deck, product demo, and financial projections.</p>
+        <a href="mailto:contact@wantch.com?subject=Investor%20Inquiry" class="cta-button">Schedule a Call</a>
+        <p style="margin-top: 30px; font-size: 1rem; opacity: 0.8;">
+            📄 <a href="wantch_pitchdeck.html" style="color: #667eea; text-decoration: none;">View Full Pitch Deck →</a>
+        </p>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Wantch. Privacy-first context movie recommendations.</p>
+        <p style="margin-top: 10px;">📧 contact@wantch.com</p>
+    </footer>
+</body>
+</html>
