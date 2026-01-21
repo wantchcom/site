@@ -257,10 +257,65 @@
             line-height: 1.6;
         }
 
+        /* Contact Section */
+        .contact {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-email:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-email::before {
+            content: "📧";
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1.1rem; }
             .phone-mockup { transform: scale(0.8); }
+            .contact h2 { font-size: 2rem; }
+            .contact-email { font-size: 1.1rem; padding: 16px 32px; }
         }
     </style>
 </head>
@@ -326,5 +381,15 @@
             </div>
         </div>
     </section>
+
+    <section class="contact">
+        <h2>Interested in Wantch?</h2>
+        <p>Partnerships, investments, or media inquiries — we'd love to hear from you.</p>
+        <a href="mailto:contact@wantch.com" class="contact-email">contact@wantch.com</a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Wantch. Privacy-first context movie recommendations.</p>
+    </footer>
 </body>
 </html>
