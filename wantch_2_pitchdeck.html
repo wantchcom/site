@@ -143,6 +143,31 @@
             animation: bounce 2s ease-in-out infinite;
         }
 
+        .contact-info {
+            margin-top: 80px;
+            font-size: 1.2rem;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info p {
+            margin: 15px 0;
+        }
+
+        .contact-email-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-email-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
         @keyframes bounce {
             0%, 100% { transform: translateX(-50%) translateY(0); }
             50% { transform: translateX(-50%) translateY(-10px); }
@@ -174,9 +199,9 @@
             <h2>The Problem</h2>
             <ul>
                 <li><span class="highlight">Decision paralysis:</span> Users spend 18+ minutes browsing Netflix before choosing</li>
-                <li><span class="highlight">Context-blind algos:</span> Recs ignore if you're stressed, tired, or with friends</li>
+                <li><span class="highlight">Context-blind algorithms:</span> Recommendations ignore your current state (stressed, tired, with friends)</li>
                 <li><span class="highlight">Privacy trade-offs:</span> Systems require detailed viewing history and personal data</li>
-                <li><span class="highlight">Cold start:</span> New users get generic suggestions until enough data is collected</li>
+                <li><span class="highlight">Cold start problem:</span> New users receive generic suggestions until enough data accumulates</li>
             </ul>
             <div class="slide-number">2/12</div>
         </div>
@@ -189,14 +214,14 @@
                 <div>
                     <h3 style="color: #667eea; margin-bottom: 20px;">On-Device Analysis</h3>
                     <p>Phone activity → abstract state vector</p>
-                    <p>No raw data leaves device</p>
+                    <p>Zero raw data leaves your device</p>
                 </div>
                 <div>
                     <h3 style="color: #667eea; margin-bottom: 20px;">Rich Content Metadata</h3>
-                    <p>"Whisky-aroma" traits: vibe, pace, tension, visual style</p>
+                    <p>"Whisky-aroma" traits: vibe, pace, tension, visual style, emotional depth</p>
                 </div>
             </div>
-            <p style="margin-top: 40px;">Vector similarity matching → instant personalized pick</p>
+            <p style="margin-top: 40px;">Vector similarity matching → instant, personalized recommendation</p>
             <div class="slide-number">3/12</div>
         </div>
 
@@ -216,7 +241,7 @@
                 </tr>
                 <tr>
                     <td>2. State Vector</td>
-                    <td>Convert to abstract embedding (512-dim)</td>
+                    <td>Convert to abstract embedding (512-dimensional)</td>
                     <td>✅ No identifiers</td>
                 </tr>
                 <tr>
@@ -231,8 +256,8 @@
                 </tr>
                 <tr>
                     <td>5. Delivery</td>
-                    <td>One perfect pick + smart link</td>
-                    <td>✅ Direct to platform</td>
+                    <td>One perfect pick + smart link to platform</td>
+                    <td>✅ Direct affiliate referral</td>
                 </tr>
             </table>
             <div class="slide-number">4/12</div>
@@ -244,20 +269,20 @@
             <div style="margin-top: 40px;">
                 <div class="metric-box" style="margin-bottom: 30px;">
                     <h3>$87B</h3>
-                    <p><span class="highlight">TAM:</span> Global streaming market (2026)</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">All users seeking content discovery tools</p>
+                    <p><span class="highlight">TAM (Total Addressable Market):</span> Global streaming market (2026)</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">All users globally seeking content discovery solutions</p>
                 </div>
 
                 <div class="metric-box" style="margin-bottom: 30px;">
                     <h3>$12B</h3>
-                    <p><span class="highlight">SAM:</span> US + EU privacy-conscious millennials/Gen-Z</p>
+                    <p><span class="highlight">SAM (Serviceable Addressable Market):</span> US + EU privacy-conscious millennials/Gen-Z</p>
                     <p style="font-size: 0.9rem; margin-top: 10px;">~180M users aged 18-45 with 3+ streaming subscriptions</p>
                 </div>
 
                 <div class="metric-box">
                     <h3>$420M</h3>
-                    <p><span class="highlight">SOM:</span> Initial 5% capture in US market year 3</p>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">~2.5M users × $14 ARPU (Average Revenue Per User) × 12 months</p>
+                    <p><span class="highlight">SOM (Serviceable Obtainable Market):</span> 5% capture by year 3</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">~2.5M users × $14 ARPU (Annual Recurring Revenue Per User) × 12 months</p>
                 </div>
             </div>
             <div class="slide-number">5/12</div>
@@ -265,23 +290,23 @@
 
         <!-- Slide 6: Business Model -->
         <div class="slide">
-            <h2>Business Model (Бизнес-модель)</h2>
+            <h2>Business Model</h2>
             <div class="grid-2">
                 <div class="metric-box">
                     <h3>💰 Revenue Streams</h3>
                     <ul style="margin-top: 20px;">
-                        <li>Freemium: $4.99/mo for unlimited picks</li>
-                        <li>Affiliate: 5-15% commission from streaming platforms</li>
-                        <li>Sponsored recs: $0.50-2 CPM from studios</li>
+                        <li>Freemium: $4.99/month for unlimited picks</li>
+                        <li>Affiliate commissions: 5-15% from streaming platforms</li>
+                        <li>Sponsored recommendations: $0.50-2 CPM from studios</li>
                     </ul>
                 </div>
 
                 <div class="metric-box">
                     <h3>📊 Unit Economics</h3>
                     <ul style="margin-top: 20px;">
-                        <li>CAC (Customer Acquisition Cost): ~$12 (paid social + organic)</li>
-                        <li>LTV (Lifetime Value): ~$85 (18-month avg retention)</li>
-                        <li>LTV:CAC = 7:1</li>
+                        <li>CAC (Customer Acquisition Cost): ~$12 (paid + organic)</li>
+                        <li>LTV (Lifetime Value): ~$85 (18-month retention)</li>
+                        <li>LTV:CAC Ratio: 7:1 (healthy)</li>
                     </ul>
                 </div>
             </div>
@@ -291,59 +316,59 @@
 
         <!-- Slide 7: Competitive Landscape -->
         <div class="slide">
-            <h2>Competitive Landscape (Конкурентная среда)</h2>
+            <h2>Competitive Landscape</h2>
             <table>
                 <tr>
                     <th>Player</th>
                     <th>Approach</th>
-                    <th>Weakness</th>
+                    <th>Key Weakness</th>
                 </tr>
                 <tr>
-                    <td>Netflix / Prime</td>
+                    <td>Netflix / Prime Video</td>
                     <td>In-platform history-based</td>
-                    <td>Siloed, context-blind, privacy concerns</td>
+                    <td>Siloed, context-blind, privacy invasive</td>
                 </tr>
                 <tr>
                     <td>Letterboxd / IMDb</td>
-                    <td>Social discovery</td>
+                    <td>Social discovery & reviews</td>
                     <td>Requires active curation, no instant picks</td>
                 </tr>
                 <tr>
                     <td>JustWatch</td>
-                    <td>Aggregator + search</td>
+                    <td>Aggregator + search tool</td>
                     <td>No personalization, still requires browsing</td>
                 </tr>
                 <tr>
-                    <td>TikTok / Reels</td>
-                    <td>Short-form recommendations</td>
-                    <td>Different content type, attention-trap design</td>
+                    <td>TikTok / YouTube Shorts</td>
+                    <td>Short-form viral discovery</td>
+                    <td>Different format, attention-optimized</td>
                 </tr>
             </table>
-            <p style="margin-top: 40px;"><span class="highlight">Wantch differentiation:</span> Privacy + Context + Zero-browse UX</p>
+            <p style="margin-top: 40px;"><span class="highlight">Wantch Differentiation:</span> Privacy-first + Context-aware + Zero-browse UX + One-tap</p>
             <div class="slide-number">7/12</div>
         </div>
 
         <!-- Slide 8: Technology Stack -->
         <div class="slide">
-            <h2>Technology Stack (Технологический стек)</h2>
+            <h2>Technology Stack</h2>
             <div class="grid-2">
                 <div>
-                    <h3 style="color: #667eea;">Client (iOS/Android)</h3>
+                    <h3 style="color: #667eea;">Client (iOS / Android)</h3>
                     <ul>
-                        <li>Swift/Kotlin native</li>
+                        <li>Swift / Kotlin native apps</li>
                         <li>CoreML / TensorFlow Lite</li>
                         <li>On-device embedding generation</li>
-                        <li>Privacy-preserving analytics</li>
+                        <li>Privacy-preserving local analytics</li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 style="color: #667eea;">Backend</h3>
+                    <h3 style="color: #667eea;">Backend & Infrastructure</h3>
                     <ul>
-                        <li>Pinecone / Weaviate vector DB</li>
-                        <li>Python (FastAPI) for matching</li>
-                        <li>GPT-4 for content tagging</li>
-                        <li>AWS / GCP infrastructure</li>
+                        <li>Pinecone / Weaviate (vector DB)</li>
+                        <li>Python FastAPI for matching engine</li>
+                        <li>GPT-4 for content tagging & metadata</li>
+                        <li>AWS / GCP for compute & storage</li>
                     </ul>
                 </div>
             </div>
@@ -351,19 +376,19 @@
             <div style="margin-top: 50px;">
                 <h3 style="color: #667eea;">Content Intelligence</h3>
                 <p>Semi-automated "whisky-aroma" metadata: LLM analysis + visual models + manual QA</p>
-                <p>~50K titles tagged by Q2 2026</p>
+                <p style="margin-top: 10px;">Target: 50K titles tagged with rich embeddings by Q2 2026</p>
             </div>
             <div class="slide-number">8/12</div>
         </div>
 
         <!-- Slide 9: Traction & Roadmap -->
         <div class="slide">
-            <h2>Traction & Roadmap (Прогресс и дорожная карта)</h2>
+            <h2>Traction & Roadmap</h2>
 
             <div class="metric-box" style="margin-bottom: 30px;">
-                <h3>Current Status</h3>
+                <h3>Current Status (Q4 2025)</h3>
                 <ul>
-                    <li>MVP in development (iOS beta by March 2026)</li>
+                    <li>MVP in active development (iOS beta by March 2026)</li>
                     <li>5K+ titles cataloged with rich metadata</li>
                     <li>Pilot partnerships with 2 indie streaming platforms</li>
                 </ul>
@@ -376,19 +401,19 @@
                 </tr>
                 <tr>
                     <td>Q1 2026</td>
-                    <td>Closed beta (500 users), iOS launch</td>
+                    <td>Closed beta (500 users), iOS public release</td>
                 </tr>
                 <tr>
                     <td>Q2 2026</td>
-                    <td>Public launch US, 10K users, Android</td>
+                    <td>US public launch, 10K active users, Android release</td>
                 </tr>
                 <tr>
                     <td>Q3 2026</td>
-                    <td>50K users, Netflix/Prime affiliate deals</td>
+                    <td>50K users, Netflix & Prime affiliate deals live</td>
                 </tr>
                 <tr>
                     <td>Q4 2026</td>
-                    <td>100K users, EU expansion, freemium rollout</td>
+                    <td>100K users, EU expansion, freemium monetization</td>
                 </tr>
             </table>
             <div class="slide-number">9/12</div>
@@ -396,56 +421,56 @@
 
         <!-- Slide 10: Team -->
         <div class="slide">
-            <h2>Team (Команда)</h2>
+            <h2>Team</h2>
             <div class="grid-2">
                 <div class="metric-box">
                     <h3>👤 Founder / CEO</h3>
-                    <p style="margin-top: 20px;">Background in AI/ML and product design</p>
-                    <p>Based in Montenegro, targeting US market</p>
-                    <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.7;">[Add specific experience: previous companies, technical skills, domain expertise]</p>
+                    <p style="margin-top: 20px;">Background in AI/ML research and product design</p>
+                    <p>Based in Montenegro, targeting US market expansion</p>
+                    <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.7;">[Specific experience: previous companies, technical credentials, domain expertise to be added]</p>
                 </div>
 
                 <div class="metric-box">
-                    <h3>🎯 Advisors (to be added)</h3>
+                    <h3>🎯 Advisors (To Be Added)</h3>
                     <ul style="margin-top: 20px;">
-                        <li>Ex-Netflix ML engineer</li>
-                        <li>Privacy policy expert</li>
-                        <li>Entertainment industry veteran</li>
+                        <li>Ex-Netflix ML/recommendations engineer</li>
+                        <li>Privacy policy & data protection expert</li>
+                        <li>Entertainment industry veteran (studio executive)</li>
                     </ul>
                 </div>
             </div>
 
-            <p style="margin-top: 40px; font-size: 1.1rem;"><span class="highlight">Hiring plan:</span> iOS engineer (Q1), Backend ML engineer (Q2), Growth marketer (Q3)</p>
+            <p style="margin-top: 40px; font-size: 1.1rem;"><span class="highlight">Hiring Plan:</span> iOS engineer (Q1 2026), Backend ML engineer (Q2), Growth marketer (Q3)</p>
             <div class="slide-number">10/12</div>
         </div>
 
         <!-- Slide 11: Financials & Ask -->
         <div class="slide">
-            <h2>The Ask (Запрос финансирования)</h2>
+            <h2>The Ask</h2>
 
             <div class="metric-box" style="margin-bottom: 40px; background: rgba(102, 126, 234, 0.2);">
                 <h3>$750K Seed Round</h3>
-                <p style="font-size: 1.2rem; margin-top: 10px;">18-month runway to product-market fit (PMF)</p>
+                <p style="font-size: 1.2rem; margin-top: 10px;">18-month runway to Product-Market Fit (PMF)</p>
             </div>
 
             <div class="grid-2">
                 <div>
                     <h3 style="color: #667eea;">Use of Funds</h3>
                     <ul>
-                        <li>40% Engineering (team + infra)</li>
-                        <li>30% Content acquisition & tagging</li>
+                        <li>40% Engineering (team salaries + infrastructure)</li>
+                        <li>30% Content acquisition & metadata tagging</li>
                         <li>20% Marketing & user acquisition</li>
-                        <li>10% Operations & legal</li>
+                        <li>10% Operations, legal & administration</li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 style="color: #667eea;">18-Month Targets</h3>
+                    <h3 style="color: #667eea;">18-Month Success Metrics</h3>
                     <ul>
-                        <li>100K active users</li>
-                        <li>15% paid conversion rate</li>
+                        <li>100K monthly active users</li>
+                        <li>15% free-to-paid conversion rate</li>
                         <li>$1.2M ARR (Annual Recurring Revenue)</li>
-                        <li>Series A-ready metrics</li>
+                        <li>Series A readiness with clear unit economics</li>
                     </ul>
                 </div>
             </div>
@@ -454,13 +479,13 @@
 
         <!-- Slide 12: Closing -->
         <div class="slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); align-items: center; text-align: center;">
-            <h1 style="-webkit-text-fill-color: white;">Let's Build the Future of<br>Content Discovery</h1>
+            <h1 style="-webkit-text-fill-color: white;">Let's Build the Future<br>of Content Discovery</h1>
             <p style="font-size: 1.5rem; margin-top: 40px; opacity: 1;">Privacy-first. Context-aware. One tap.</p>
 
-            <div style="margin-top: 80px; font-size: 1.2rem;">
-                <p>📧 Contact: [your-email@wantch.com]</p>
-                <p style="margin-top: 20px;">🌐 Demo: [wantch.app]</p>
-                <p style="margin-top: 20px;">📄 Deck: [deck.wantch.app]</p>
+            <div class="contact-info">
+                <p>📧 <span class="highlight" style="color: white;">Email:</span> <a href="mailto:contact@wantch.com" class="contact-email-link">contact@wantch.com</a></p>
+                <p>🌐 <span class="highlight" style="color: white;">Website:</span> wantch.app</p>
+                <p>📱 <span class="highlight" style="color: white;">Demo:</span> Available on request</p>
             </div>
             <div class="slide-number">12/12</div>
         </div>
