@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wantch — Privacy-First Movie Picks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 700px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            padding: 18px 48px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* iPhone 17 Pro Max Mockup */
+        .phone-mockup {
+            position: relative;
+            width: 390px;
+            height: 844px;
+            background: #1a1a1a;
+            border-radius: 55px;
+            padding: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            margin: 60px auto;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 37px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 45px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-interface {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-small {
+            position: absolute;
+            top: 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        /* Animated Poster */
+        .poster-container {
+            width: 280px;
+            height: 420px;
+            perspective: 1000px;
+            animation: swipeUp 3s ease-in-out infinite;
+        }
+
+        .poster {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        .poster-title {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .suggestion-text {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-align: center;
+            max-width: 300px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .tap-button {
+            position: absolute;
+            bottom: 40px;
+            width: 70px;
+            height: 70px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            animation: tapPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes swipeUp {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-100px) scale(0.95); opacity: 0.7; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+
+        @keyframes tapPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .phone-mockup { transform: scale(0.8); }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Wantch</h1>
+        <p>Privacy-first movie picks based on your life context, not just viewing history.</p>
+        <a href="#features" class="cta-button">See How It Works</a>
+
+        <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+                <div class="app-interface">
+                    <div class="logo-small">WANTCH</div>
+
+                    <div class="poster-container">
+                        <div class="poster">
+                            <div class="poster-title">Blade Runner<br>2049</div>
+                        </div>
+                    </div>
+
+                    <div class="suggestion-text">
+                        Perfect for your reflective evening mood
+                    </div>
+
+                    <div class="tap-button">✨</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>How Wantch Works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🔒 Privacy-First</h3>
+                <p>On-device analysis converts your phone activity into abstract vectors. No raw data leaves your device.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🧠 Context-Aware</h3>
+                <p>Analyzes time, weather, recent apps, and your current state to match perfect content.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎬 Rich Metadata</h3>
+                <p>Every title has "whisky-aroma" traits: vibe, tension, pace, visual style, emotional depth.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>⚡ One-Tap Magic</h3>
+                <p>No scrolling, no decision fatigue. Just one perfect pick for right now.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🌍 Smart Streaming</h3>
+                <p>Direct links to available platforms in your region — Netflix, Prime, Apple TV+, theaters.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎯 Vector Matching</h3>
+                <p>State embeddings meet content embeddings in our vector database for instant, precise recs.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
